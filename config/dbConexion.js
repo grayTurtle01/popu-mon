@@ -8,7 +8,7 @@ config = {useNewUrlParser: true,
 
 function connectDB() {
   mongoose.connect(uri, config)
-    .then(db => console.log('db is connected: '+ db.connection.host))
+    .then(db => console.log('--> db is connected: '+ db.connection.host))
     .catch( err => console.erro(err) )
 }
 

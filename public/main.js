@@ -1,32 +1,32 @@
 // Delete
-bs = document.querySelectorAll('.fa-trash')
+// cans = document.querySelectorAll('.fa-trash')
 
-for(b of bs)
-  b.addEventListener('click', deleteTask)
+// for(can of cans)
+//   can.addEventListener('click', deletePokemon)
 
-async function  deleteTask(){
-  li = this.parentNode
-  id = li.getAttribute('_id')
+// async function  deletePokemon(){
+//   div = this.parentNode
+//   id = div.getAttribute('_id')
   
-  res = await fetch("/pokemons/deletePokemon", {
-    method: "delete",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({_id : id}) 
-  })
+//   res = await fetch("/pokemons/deletePokemon", {
+//     method: "delete",
+//     headers: {"Content-Type": "application/json"},
+//     body: JSON.stringify({_id : id}) 
+//   })
 
-  data = await res.json()
-  console.log(data)
+//   //data = await res.json()
+//   //console.log(data)
 
-  location.reload()
+//   location.reload()
 
-}
+// }
 
 
 // Search Pokemon Data 
-  btn = document.querySelector('#add_pokemon')
-  btn.addEventListener('click', fetchPokemon)  
+btn = document.querySelector('#add_pokemon')
+btn.addEventListener('click', fetchPokemon)  
 
-  async function fetchPokemon(pokemon_name){
+async function fetchPokemon(pokemon_name){
 
     input = document.querySelector('input')
     pokemon_name = input.value.toLowerCase()
@@ -37,7 +37,7 @@ async function  deleteTask(){
     try{
       res = await fetch(full_url)
       data = await res.json()
-      console.log(data)
+      //console.log(data)
 
       img_url = data.sprites.other["official-artwork"].front_default
       pokemon_name = data.name
@@ -47,10 +47,9 @@ async function  deleteTask(){
     }catch(err){
       message = document.querySelector('#message')
       message.style.display = 'block'
-      message.innerText = "Alert: Wrong pokemon Name"
+      message.innerText = "Alert: Wrong pokemon Name: " + pokemon_name
       console.log(' ---> Wrong pokemon name')
     }
-
     
   }
 
@@ -68,7 +67,6 @@ async function makeRequet(pokemon_name, img_url){
   //data = await res.json()
   //console.log(data)
   location.reload()
-
 
 }
 
@@ -91,9 +89,7 @@ async function addLike(){
     })
 
   })
-
-  //data = await res.json()
-  //console.log(data)
+  // data = await res.json()
+  // console.log(data)
   location.reload()
-
 }
