@@ -1,0 +1,32 @@
+.completed{
+  color: gray;
+  text-decoration: line-through;
+}
+
+
+li{
+  font-size: 25px;
+}
+
+img {
+  width: 150px;
+  display: block;
+}
+
+.card{
+  text-align: center;
+  width: 250px;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 20px;
+}
+
+i{
+  margin-left: 25px ;
+}
+
+#message{
+  display: none;
+}

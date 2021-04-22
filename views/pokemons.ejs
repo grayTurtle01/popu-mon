@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PopuMon</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    <h1>Rank your favorite Pokemons</h1>
+    
+    <form action="/pokemons/addPokemon" method="POST"  onsubmit="return false">
+      <input name="pokemon_name" autofocus placeholder="new pokemon">
+      <button id="add_pokemon">Add New Pokemon</button>
+    </form>
+
+    <p id="message">Message: </p>
+
+  
+   
+      <% for( pokemon of pokemons) {%>
+        <div class="card"   _id=<%=pokemon._id%>>
+          <img src="<%=pokemon.url_img%>" title="<%= pokemon.number %> " >
+          
+
+          <%= pokemon.name %>
+          <i class="fa fa-trash"></i>
+          <i class="fas fa-thumbs-up likes"></i>
+          <%= pokemon.likes %>
+        </div>
+      <%} %>
+   
+  
+    <script src="main.js"></script>
+
+  </body>
+</html>
