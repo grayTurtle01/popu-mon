@@ -16,18 +16,21 @@
     <p id="message">Message: </p>
 
   
-   
-      <% for( pokemon of pokemons) {%>
+     <div id="container">
+
+       <% for( pokemon of pokemons) {%>
         <div class="card"   _id=<%=pokemon._id%>>
           <img src="<%=pokemon.url_img%>" title="<%= pokemon.number %> " >
           
-
+          
           <%= pokemon.name %>
           <i class="fas fa-thumbs-up likes"></i>
           <i class="fas fa-thumbs-down dislikes"></i>
           <%= pokemon.likes %>
         </div>
-      <%} %>
+        <%} %>
+
+      </div> 
    
   
     <script src="main.js"></script>

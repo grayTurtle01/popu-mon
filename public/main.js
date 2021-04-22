@@ -89,17 +89,18 @@ async function addLike(){
     })
 
   })
-  // data = await res.json()
+  data = await res.json()
   // console.log(data)
-  location.reload()
+  renderPokemons(data)
+  //location.reload()
 }
 
 
 // disLikes
-thumbs = document.querySelectorAll('.fa-thumbs-down')
+dislikes = document.querySelectorAll('.fa-thumbs-down')
 
-for(thumb of thumbs)
-  thumb.addEventListener('click', disLike)
+for(dislike of dislikes)
+  dislike.addEventListener('click', disLike)
 
 async function disLike(){
   div = this.parentNode
@@ -113,7 +114,64 @@ async function disLike(){
     })
 
   })
-  // data = await res.json()
-  // console.log(data)
-  location.reload()
+
+  data = await res.json()
+  console.log(data)
+  //location.reload()
+  renderPokemons(data)
+}
+
+// render Pokemons SPA
+function renderPokemons(pokemons){
+  container = document.getElementById('container')
+  container.innerHTML = ''
+
+  pokemons.forEach( pokemon => {
+    card = document.createElement('div')
+    card.setAttribute('class', 'card')
+    card.setAttribute('_id', pokemon._id)
+
+    //image
+    image = document.createElement('img')
+    image.src = pokemon.url_img
+
+    //name
+    poke_name = document.createTextNode(pokemon.name)
+
+    //thumbs-up
+    like = document.createElement('i')
+    like.setAttribute('class', 'fas fa-thumbs-up likes')
+
+    //dislikes
+    dislike = document.createElement('i')
+    dislike.setAttribute('class', 'fas fa-thumbs-down dislikes')
+    
+    //likes
+    likes = document.createTextNode(pokemon.likes)
+
+    card.appendChild(image)
+    card.appendChild(poke_name)
+    card.appendChild(like)
+    card.appendChild(dislike)
+    card.appendChild(likes)
+
+
+    container.appendChild(card)
+  })
+
+  reloadEvents()
+}
+
+
+// Reload Events
+function reloadEvents(){
+  thumbs = document.querySelectorAll('.fa-thumbs-up')
+
+  for(thumb of thumbs)
+    thumb.addEventListener('click', addLike)
+  
+  dislikes = document.querySelectorAll('.fa-thumbs-down')
+  for(dislike of dislikes)
+      dislike.addEventListener('click', disLike)
+    
 }

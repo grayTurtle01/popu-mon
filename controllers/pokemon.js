@@ -57,8 +57,11 @@ obj = {
     pokemon = await Model.findById({_id : req.body._id })
     //console.log(obj)
     pokemon.likes++
-    pokemon.save()
-    res.json( pokemon )
+    await pokemon.save()
+
+    pokemons = await Model.find().sort({likes: -1})
+
+    res.json( pokemons )
 
   }catch(err){
  
@@ -73,8 +76,11 @@ obj = {
     pokemon = await Model.findById({_id : req.body._id })
     //console.log(obj)
     pokemon.likes--
-    pokemon.save()
-    res.json( pokemon )
+    await pokemon.save()
+
+    pokemons = await Model.find().sort({likes: -1})
+
+    res.json( pokemons )
 
   }catch(err){
  
