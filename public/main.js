@@ -93,3 +93,27 @@ async function addLike(){
   // console.log(data)
   location.reload()
 }
+
+
+// disLikes
+thumbs = document.querySelectorAll('.fa-thumbs-down')
+
+for(thumb of thumbs)
+  thumb.addEventListener('click', disLike)
+
+async function disLike(){
+  div = this.parentNode
+  id = div.getAttribute('_id')
+  
+  res = await fetch("/pokemons/disLike", {
+    method: "put",
+    headers: {'Content-type': 'application/json'},
+    body: JSON.stringify({
+      "_id": id 
+    })
+
+  })
+  // data = await res.json()
+  // console.log(data)
+  location.reload()
+}

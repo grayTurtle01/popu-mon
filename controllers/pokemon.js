@@ -65,7 +65,24 @@ obj = {
     console.error(err)
   }
 
+ },
+ 
+ disLike: async (req, res)=>{
+    
+  try{
+    pokemon = await Model.findById({_id : req.body._id })
+    //console.log(obj)
+    pokemon.likes--
+    pokemon.save()
+    res.json( pokemon )
+
+  }catch(err){
+ 
+    console.error(err)
+  }
+
  },    
+ 
 }
 
 module.exports = obj
