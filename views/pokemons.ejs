@@ -9,7 +9,7 @@
     <h1>Rank your favorite Pokemons</h1>
     
     <form action="/pokemons/addPokemon" method="POST"  onsubmit="return false">
-      <input name="pokemon_name" autofocus placeholder="new pokemon">
+      <input name="pokemon_name" autofocus placeholder="pokemon name or number" width="200">
       <button id="add_pokemon">Add New Pokemon</button>
     </form>
 
@@ -27,6 +27,7 @@
           <i class="fas fa-thumbs-up likes"></i>
           <i class="fas fa-thumbs-down dislikes"></i>
           <%= pokemon.likes %>
+          <i class="fas fa-trash"></i>
         </div>
         <%} %>
 

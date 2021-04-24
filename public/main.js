@@ -1,25 +1,25 @@
 // Delete
-// cans = document.querySelectorAll('.fa-trash')
+cans = document.querySelectorAll('.fa-trash')
 
-// for(can of cans)
-//   can.addEventListener('click', deletePokemon)
+for(can of cans)
+  can.addEventListener('click', deletePokemon)
 
-// async function  deletePokemon(){
-//   div = this.parentNode
-//   id = div.getAttribute('_id')
+async function  deletePokemon(){
+  div = this.parentNode
+  id = div.getAttribute('_id')
   
-//   res = await fetch("/pokemons/deletePokemon", {
-//     method: "delete",
-//     headers: {"Content-Type": "application/json"},
-//     body: JSON.stringify({_id : id}) 
-//   })
+  res = await fetch("/pokemons/deletePokemon", {
+    method: "delete",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({_id : id}) 
+  })
 
-//   //data = await res.json()
-//   //console.log(data)
+  //data = await res.json()
+  //console.log(data)
 
-//   location.reload()
+  location.reload()
 
-// }
+}
 
 
 // Search Pokemon Data 
@@ -134,26 +134,32 @@ function renderPokemons(pokemons){
     //image
     image = document.createElement('img')
     image.src = pokemon.url_img
+    image.setAttribute('title', pokemon.number)
 
     //name
     poke_name = document.createTextNode(pokemon.name)
 
     //thumbs-up
     like = document.createElement('i')
-    like.setAttribute('class', 'fas fa-thumbs-up likes')
+    like.setAttribute('class', 'fas fa-thumbs-up')
 
     //dislikes
     dislike = document.createElement('i')
-    dislike.setAttribute('class', 'fas fa-thumbs-down dislikes')
+    dislike.setAttribute('class', 'fas fa-thumbs-down')
     
     //likes
     likes = document.createTextNode(pokemon.likes)
+
+    //trash
+    trash = document.createElement('i')
+    trash.setAttribute('class', 'fas fa-trash')
 
     card.appendChild(image)
     card.appendChild(poke_name)
     card.appendChild(like)
     card.appendChild(dislike)
     card.appendChild(likes)
+    // card.appendChild(trash)
 
 
     container.appendChild(card)
@@ -166,12 +172,15 @@ function renderPokemons(pokemons){
 // Reload Events
 function reloadEvents(){
   thumbs = document.querySelectorAll('.fa-thumbs-up')
-
   for(thumb of thumbs)
     thumb.addEventListener('click', addLike)
   
   dislikes = document.querySelectorAll('.fa-thumbs-down')
   for(dislike of dislikes)
       dislike.addEventListener('click', disLike)
+
+  cans = document.querySelectorAll('.fa-trash')
+  for(can of cans)
+    can.addEventListener('click', deletePokemon)
     
 }
