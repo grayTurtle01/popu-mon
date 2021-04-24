@@ -14,10 +14,11 @@ async function  deletePokemon(){
     body: JSON.stringify({_id : id}) 
   })
 
-  //data = await res.json()
+  pokemons = await res.json()
+  renderPokemons(pokemons)
   //console.log(data)
 
-  location.reload()
+  //location.reload()
 
 }
 
@@ -44,6 +45,8 @@ async function fetchPokemon(pokemon_name){
       number = data.id  
       await makeRequet(pokemon_name, img_url, number)
 
+      input.value = ""
+
     }catch(err){
       message = document.querySelector('#message')
       message.style.display = 'block'
@@ -64,12 +67,13 @@ async function makeRequet(pokemon_name, img_url){
     })
   })
 
-  //data = await res.json()
+  pokemons = await res.json()
+  renderPokemons(pokemons)
   //console.log(data)
-  location.reload()
+
+  //location.reload()
 
 }
-
 
 // Likes
 thumbs = document.querySelectorAll('.fa-thumbs-up')
@@ -159,15 +163,15 @@ function renderPokemons(pokemons){
     card.appendChild(like)
     card.appendChild(dislike)
     card.appendChild(likes)
-    // card.appendChild(trash)
+    card.appendChild(trash)
 
 
     container.appendChild(card)
   })
 
   reloadEvents()
+  reloadStyles()
 }
-
 
 // Reload Events
 function reloadEvents(){
@@ -183,4 +187,17 @@ function reloadEvents(){
   for(can of cans)
     can.addEventListener('click', deletePokemon)
     
+}
+
+// Reload Styles
+function reloadStyles(){
+  is = document.querySelectorAll('i')
+  for(i of is){
+    i.style.marginLeft = "7px"
+    i.style.marginRight = "7px"
+  }
+
+  message = document.querySelector('#message')
+  message.style.display = 'none'
+
 }

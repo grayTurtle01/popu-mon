@@ -6,6 +6,7 @@ obj = {
     try{
       pokemons = await Model.find({}).sort({likes:-1})
       res.render('pokemons.ejs', {"pokemons": pokemons  })
+      //res.json(pokemons)
 
     }catch(err){
     
@@ -26,15 +27,19 @@ obj = {
        new_pokemon.likes = 0
      
        await Model.create(new_pokemon)
-       res.redirect("/pokemons")
+       pokemons = await Model.find()
+       res.json(pokemons) 
+       //res.redirect("/pokemons")
 
      }catch(err){
        
        pokemon = array[0]
        pokemon.likes++
-       pokemon.save()  
+       await pokemon.save()  
        console.error(err)
-       res.redirect('/pokemons')
+       //res.redirect('/pokemons')
+       pokemons = await Model.find().sort({likes:-1})
+       res.json(pokemons)
      }
   },
   
@@ -42,7 +47,8 @@ obj = {
     
     try{
       obj = await Model.deleteOne({_id : req.body._id })
-      res.json( obj )
+      pokemons = await Model.find().sort({likes:-1})
+      res.json( pokemons )
 
     }catch(err){
    
