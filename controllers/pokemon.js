@@ -27,7 +27,7 @@ obj = {
        new_pokemon.likes = 0
      
        await Model.create(new_pokemon)
-       pokemons = await Model.find()
+       pokemons = await Model.find().sort({likes: -1})
        res.json(pokemons) 
        //res.redirect("/pokemons")
 
